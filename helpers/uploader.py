@@ -36,12 +36,11 @@ async def uploadVideo(
                     width=width,
                     duration=duration,
                     thumb=video_thumbnail,
-                    caption=f"""<blockquote><b>{merged_video_path.rsplit('/',1)[-1]}
-                    
-Merged for: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>
-User's ID: {cb.from_user.id}
-Bot: @{Config.BOT_USERNAME}
-</b></blockquote>""",
+                    caption=f"""<b>{merged_video_path.rsplit('/',1)[-1]}
+
+Merged For: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>
+User: {cb.from_user.id} | @{cb.from_user.username}
+Bot: @{Config.BOT_USERNAME}</b>""",
                     progress=prog.progress_for_pyrogram,
                     progress_args=(
                         f"**Uploading:\n{merged_video_path.rsplit('/',1)[-1]}**",
@@ -54,12 +53,11 @@ Bot: @{Config.BOT_USERNAME}
                     chat_id=int(LOGCHANNEL),
                     document=merged_video_path,
                     thumb=video_thumbnail,
-                    caption=f"""<blockquote><b>{merged_video_path.rsplit('/',1)[-1]}
-                    
-Merged for: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>
-User's ID: {cb.from_user.id}
-Bot: @{Config.BOT_USERNAME}
-</b></blockquote>""",
+                    caption=f"""<b>{merged_video_path.rsplit('/',1)[-1]}
+
+Merged For: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>
+User: {cb.from_user.id} | @{cb.from_user.username}
+Bot: @{Config.BOT_USERNAME}""",
                     progress=prog.progress_for_pyrogram,
                     progress_args=(
                         f"**Uploading: {merged_video_path.rsplit('/',1)[-1]}**",
@@ -71,12 +69,11 @@ Bot: @{Config.BOT_USERNAME}
                     chat_id=cb.message.chat.id,
                     from_chat_id=sent_.chat.id,
                     message_id=sent_.id,
-                    caption=f"""<blockquote><b>{merged_video_path.rsplit('/',1)[-1]}
-                    
-Merged for: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>
-User's ID: {cb.from_user.id}
-Bot: @{Config.BOT_USERNAME}
-</b></blockquote>""",
+                    caption=f"""<b>{merged_video_path.rsplit('/',1)[-1]}
+
+Merged For: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>
+User: {cb.from_user.id} | @{cb.from_user.username}
+Bot: @{Config.BOT_USERNAME}""",
                 )
                 # await sent_.delete()
     else:
@@ -120,12 +117,11 @@ Bot: @{Config.BOT_USERNAME}
                 media = sent_.video or sent_.document
                 await sent_.copy(
                     chat_id=int(LOGCHANNEL),
-                    caption=f"""<blockquote><b>{media.file_name}
+                    caption=f"""<b>{media.file_name}
                    
-Merged for: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>
-User's ID: {cb.from_user.id}
-Bot: @{Config.BOT_USERNAME}
-</b></blockquote>""",
+Merged For: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>
+User: {cb.from_user.id} | @{cb.from_user.username}
+Bot: @{Config.BOT_USERNAME}""",
                 )
 
 
@@ -157,11 +153,10 @@ async def uploadFiles(
                 await sent_.copy(
                     chat_id=int(LOGCHANNEL),
                     caption=f"""<blockquote><b>{media.file_name}
-                    
-Extracted by: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>
-User's ID: {cb.from_user.id}
-Bot: @{Config.BOT_USERNAME}
-</b></blockquote>""",
+
+Extracted For: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>
+User: {cb.from_user.id} | @{cb.from_user.username}
+Bot: @{Config.BOT_USERNAME}""",
                 )
     except:
         1    
