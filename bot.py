@@ -203,7 +203,7 @@ async def broadcast_handler(c: Client, m: Message):
 
 
 @mergeApp.on_message(filters.command(["cancel"]) & filters.private)
-async def cancel_command_handler(c: Client, message: Message):
+async def cancel_command_handler(c: Client, m: Message):
     user_id = m.from_user.id
 
     # Perform cleanup
@@ -841,6 +841,44 @@ except KeyError:
     userBot = None
     LOGGER.warning("No User Session, Default Bot session will be used")
 
+if __name__ == "__main__":
+    # with mergeApp:
+    #     bot:User = mergeApp.get_me()
+    #     bot_username = bot.username
+    try:
+        if userBot is not None:
+            with userBot:
+                userBot.send_message(
+                    chat_id=int(LOGCHANNEL),
+                    text=f"<b>Bot booted with Premium Account,\n\nThanks for using <a href='https://t.me/{bot_username}'>this bot</a>",
+                    disable_web_page_preview=True,
+                )
+                user = userBot.get_me()
+                Config.IS_PREMIUM = user.is_premium
+        else:
+            Config.IS_PREMIUM = False
+    except Exception as err:
+        LOGGER.error(f"{err}")
+        Config.IS_PREMIUM = False
+
+    mergeApp.run()
+
+'''
+LOGCHANNEL = Config.LOGCHANNEL
+try:
+    if Config.USER_SESSION_STRING is None:
+        raise KeyError
+    LOGGER.info("Starting USER Session")
+    userBot = Client(
+        name="merge-bot-user",
+        session_string=Config.USER_SESSION_STRING,
+        no_updates=True,
+    )
+
+except KeyError:
+    userBot = None
+    LOGGER.warning("No User Session, Default Bot session will be used")
+
 
 if __name__ == "__main__":
     # with mergeApp:
@@ -861,3 +899,4 @@ if __name__ == "__main__":
         pass
 
     mergeApp.run()
+'''
