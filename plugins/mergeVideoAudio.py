@@ -103,7 +103,7 @@ async def mergeAudio(c: Client, cb: CallbackQuery, new_file_name: str):
         return
 
     if file_size > 2147483648 and Config.IS_PREMIUM == False:
-        await cb.message.edit(f"<b>Video is Larger than 2GB Can't Upload\nContact : @{OWNER_USERNAME} to purchase premium membership for 4GB support.</b>")
+        await cb.message.edit(f"<b>Video is Larger than 2GB Can't Upload\nContact : @{Config.OWNER_USERNAME} to purchase premium membership for 4GB support.</b>")
         await delete_all(root=f"downloads/{str(cb.from_user.id)}")
         queueDB.update({cb.from_user.id: {"videos": [], "subtitles": [], "audios": []}})
         formatDB.update({cb.from_user.id: None})
