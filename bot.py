@@ -55,7 +55,6 @@ from helpers.utils import UserSettings, get_readable_file_size, get_readable_tim
 botStartTime = time.time()
 parent_id = Config.GDRIVE_FOLDER_ID
 
-paid_promotion = Config.PAID_PROMOTION
 shortener_site = Config.SHORTENER_SITE
 shortener_api = Config.SHORTENER_API
 bot_username = Config.BOT_USERNAME
@@ -224,7 +223,7 @@ async def start_handler(c: Client, m: Message):
                     reply_to_message_id=m.id,
                 )
                 return
-            if int(ad_msg.split(":")[1]) > int(get_current_time() + 86400):  #Timeout
+            if int(ad_msg.split(":")[1]) > int(get_current_time() + 43200):  #Timeout
                 await c.send_message(
                     m.chat.id,
                     "**Dont try to be over smart**",
@@ -259,7 +258,7 @@ Hit /help to learn, how to use this bot.</b>""",
         quote=True,
         reply_markup=InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("📢 Paid Promotion", url=f"https://t.me/{paid_promotion}")],
+                [InlineKeyboardButton("📢 Purchase Premium membership", callback_data="premium")],
                 [
                     InlineKeyboardButton("⛅ More Bots", url="https://t.me/jr_bots"),
                     InlineKeyboardButton("🌨️ Developer", url=f"https://t.me/StupidBoi69"),
@@ -280,7 +279,7 @@ async def files_handler(c: Client, m: Message):
     if Config.PAID_BOT.upper() == "YES":
         result = collection.find_one({"user_id": uid})
         if result is None:
-            ad_code = str_to_b64(f"{uid}:{str(get_current_time() + 86400)}") #Timeout
+            ad_code = str_to_b64(f"{uid}:{str(get_current_time() + 43200)}") #Timeout
             ad_url = shorten_url(f"https://t.me/{bot_username}?start={ad_code}") 
             await c.send_message(
                 m.chat.id,
@@ -296,7 +295,7 @@ Your verification is expired, click on below button and complete the verificatio
             )
             return
         elif int(result["time_out"]) < get_current_time():
-            ad_code = str_to_b64(f"{uid}:{str(get_current_time() + 86400)}") #Timeout
+            ad_code = str_to_b64(f"{uid}:{str(get_current_time() + 43200)}") #Timeout
             ad_url = shorten_url(f"https://t.me/{bot_username}?start={ad_code}") 
             await c.send_message(
                 m.chat.id,
@@ -574,14 +573,14 @@ async def about_handler(c: Client, m: Message):
 
 - Added token based verification authorisation system. (for earning purpose)
 ────────────────────────
-		""",
+</b>""",
         quote=True,
         reply_markup=InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("🪢 More Bots", url=f"https://t.me/jr_bots")],
+                [InlineKeyboardButton("Purchase premium membership", callback_data="premium")],
                 [
-                    InlineKeyboardButton("Source Code", url=f"t.me/StupidBoi69"),
-                    InlineKeyboardButton("Feedback", url=f"https://t.me/{Config.OWNER_USERNAME}")
+                    InlineKeyboardButton("🪢 More Bots", url=f"t.me/StupidBoi69"),
+                    InlineKeyboardButton("💭 Feedback", url=f"https://t.me/{Config.OWNER_USERNAME}")
                 ],
                 [InlineKeyboardButton("📴 Close", callback_data="close")],
             ]
