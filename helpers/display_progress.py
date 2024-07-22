@@ -13,9 +13,9 @@ from __init__ import (
 )
 from pyrogram import Client
 
-#logging.basicConfig(
-#    level=logging.DEBUG, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-#)
+logging.basicConfig(
+    level=logging.DEBUG, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
 logger = logging.getLogger(__name__)
 
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
