@@ -10,6 +10,8 @@ from pyrogram.types import (
 from pyromod.types import ListenerTypes
 from pyromod.listen import Client
 
+from config import Config
+
 from helpers import database
 from helpers.utils import UserSettings
 from bot import (
@@ -393,3 +395,58 @@ async def callback_handler(c: Client, cb: CallbackQuery):
                 await streamsExtractor(c, cb, media_mid, exAudios=True, exSubs=True)
         except Exception as e:
             LOGGER.error(e)
+
+
+    elif cb.data == "premium":
+        await cb.message.edit(
+            text=f"<b>⏺️ Hello {cb.from_user.mention}, Please choose a plan:</b>",
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("🥉 Free Tier", callback_data="free"),
+                        InlineKeyboardButton("🥇 Premium Tier", callback_data="paid"),
+                    ],
+                    [
+                        InlineKeyboardButton("📴 Close", callback_data="cancel"),
+                    ]
+                ]
+            )
+        )
+
+    elif cb.data == "free":
+        await cb.message.edit(
+            text=f"""<b><u>🥉 Free tier (free)</u>
+1) 2GB uploading support
+2) High speed (download & upload)
+3) Merge up to 10 videos into 1</b>""",
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("📴 Cancel", callback_data="cancel"),
+                        InlineKeyboardButton("🥇 Upgrade to Premium", callback_data="paid"),
+                    ]
+                ]
+            )
+        )
+
+    elif cb.data == "paid":
+        await cb.message.edit(
+            text=f"""<b><u>🥇 Premium tier plan (149₹/month)</u>
+            
+1) 4GB uploading support
+2) No token verification
+3) No ads
+4) High speed (download & upload)
+5) Merge up to 25 videos into 1</b>""",
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("🥉 Downgrade to Free", callback_data="free"),
+                    ],
+                    [
+                        InlineKeyboardButton("💳 Qr Code", url="https://t.me/{USER_NAME}"),
+                        InlineKeyboardButton("📴 Cancel", callback_data="cancel"),
+                    ]
+                ]
+            )
+        )
