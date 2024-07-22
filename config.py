@@ -13,12 +13,11 @@ class Config(object):
     GDRIVE_FOLDER_ID = os.environ.get("GDRIVE_FOLDER_ID", "root")
     USER_SESSION_STRING = os.environ.get("USER_SESSION_STRING", None)
     
-    IS_PREMIUM = True
+    IS_PREMIUM = os.environ.get("IS_PREMIUM")
     PAID_BOT = os.environ.get("PAID_BOT")
     
     BOT_USERNAME = os.environ.get("BOT_USERNAME")
     SHORTENER_SITE = os.environ.get("SHORTENER_SITE")
     SHORTENER_API = os.environ.get("SHORTENER_API")
-    PAID_PROMOTION = os.environ.get("PAID_PROMOTION")
 
     MODES = ["video-video", "video-audio", "video-subtitle", "extract-streams"]
