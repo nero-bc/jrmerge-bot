@@ -202,6 +202,31 @@ async def broadcast_handler(c: Client, m: Message):
         + f"**Failed: {str(len-success)}**\n\n📡 Broadcast completed sucessfully.",)
 
 
+@mergeApp.on_message(filters.command(["cancel"]) & filters.private)
+async def cancel_command_handler(c: Client, message: Message):
+    user_id = m.from_user.id
+
+    # Perform cleanup
+    try:
+        await delete_all(root=f"downloads/{user_id}/")
+        queueDB.update({user_id: {"videos": [], "subtitles": [], "audios": []}})
+        formatDB.update({user_id: None})
+        await message.reply_text(
+            "Successfully cancelled the operation.",
+            quote=True
+        )
+    except Exception as e:
+        LOGGER.error(f"Error during cancel operation for user {user_id}: {e}")
+        await message.reply_text(
+            "An error occurred while cancelling the operation. Please try again later.",
+            quote=True
+        )
+
+    # Optionally, delete the command message after a short delay
+    await asyncio.sleep(5)
+    await message.delete()
+
+
 #####
 @mergeApp.on_message(filters.command(["start"]) & filters.private)
 async def start_handler(c: Client, m: Message):
