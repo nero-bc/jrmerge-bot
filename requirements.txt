@@ -1,0 +1,12 @@
+dnspython
+ffmpeg-python
+hachoir
+Pillow
+psutil
+pymongo
+Pyrogram==2.0.106
+pyromod
+python-dotenv
+requests
+TgCrypto
+pytz
