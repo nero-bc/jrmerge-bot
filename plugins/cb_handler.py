@@ -444,7 +444,7 @@ async def callback_handler(c: Client, cb: CallbackQuery):
                         InlineKeyboardButton("🥉 Downgrade to Free", callback_data="free"),
                     ],
                     [
-                        InlineKeyboardButton("💳 Qr Code", url="https://t.me/{USER_NAME}"),
+                        InlineKeyboardButton("💳 Qr Code", url="https://t.me/{OWNER_USERNAME}"),
                         InlineKeyboardButton("📴 Cancel", callback_data="cancel"),
                     ]
                 ]
