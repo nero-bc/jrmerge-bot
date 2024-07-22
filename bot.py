@@ -18,7 +18,7 @@ import time
 import psutil
 import pyromod
 from PIL import Image
-from pyrogram import Client, filters,enums
+from pyrogram import Client, filters, enums
 from pyrogram.errors import (
     FloodWait,
     InputUserDeactivated,
@@ -123,7 +123,7 @@ if os.path.exists("downloads") == False:
     os.makedirs("downloads")
 
 
-@mergeApp.on_message(filters.command(["log"]) & filters.user(Config.OWNER))
+@mergeApp.on_message(filters.command(["log"]) & filters.user(Config.OWNER_NAME))
 async def sendLogFile(c: Client, m: Message):
     await m.reply_document(document="./mergebotlog.txt")
     return
@@ -161,7 +161,7 @@ async def stats_handler(c: Client, m: Message):
 @mergeApp.on_message(
     filters.command(["broadcast"])
     & filters.private
-    & filters.user(Config.OWNER))
+    & filters.user(Config.OWNER_NAME))
 	
 async def broadcast_handler(c: Client, m: Message):
     msg = m.reply_to_message
@@ -557,24 +557,9 @@ Now, hit /about to learn more about this bot. </b>""",
 @mergeApp.on_message(filters.command(["about"]) & filters.private)
 async def about_handler(c: Client, m: Message):
     await m.reply_text(
-        text="""<b>
+        text="""
 ────────────────────────
-<u>Features:</u>
-
--Ban/Unban users
--Extract audios and subtitles
--Merge videos / audios / subtitles
--Merge Up to 10 Videos in One
--Merge 2GB+ files (4GB Support)
--Upload as Documents/Video
--Custom Thumbnail Support
--Owner Can Broadcast Message to All Users
-────────────────────────
-<u>What's Special for Owner:</u>
-
-- Added token based verification authorisation system. (for earning purpose)
-────────────────────────
-</b>""",
+────────────────────────""",
         quote=True,
         reply_markup=InlineKeyboardMarkup(
             [
