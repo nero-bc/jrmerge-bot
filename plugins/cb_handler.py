@@ -422,8 +422,10 @@ async def callback_handler(c: Client, cb: CallbackQuery):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("📴 Cancel", callback_data="cancel"),
                         InlineKeyboardButton("🥇 Upgrade to Premium", callback_data="paid"),
+                    ],   
+                    [    
+                        InlineKeyboardButton("📴 Cancel", callback_data="cancel"),
                     ]
                 ]
             )
@@ -431,7 +433,7 @@ async def callback_handler(c: Client, cb: CallbackQuery):
 
     elif cb.data == "paid":
         await cb.message.edit(
-            text=f"""<b><u>🥇 Premium tier plan (149₹/month)</u>
+            text=f"""<b><u>🥇 Premium tier plan (149₹ per month)</u>
             
 1) 4GB uploading support
 2) No token verification
@@ -444,7 +446,7 @@ async def callback_handler(c: Client, cb: CallbackQuery):
                         InlineKeyboardButton("🥉 Downgrade to Free", callback_data="free"),
                     ],
                     [
-                        InlineKeyboardButton("💳 Qr Code", url="https://t.me/{OWNER_USERNAME}"),
+                        InlineKeyboardButton("💳 Qr Code", url=f"https://t.me/{Config.OWNER_USERNAME}"),
                         InlineKeyboardButton("📴 Cancel", callback_data="cancel"),
                     ]
                 ]
