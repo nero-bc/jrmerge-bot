@@ -10,6 +10,7 @@ from pyrogram.types import CallbackQuery, Message
 
 from helpers.display_progress import Progress
 
+
 async def uploadVideo(
     c: Client,
     cb: CallbackQuery,
@@ -35,12 +36,11 @@ async def uploadVideo(
                     width=width,
                     duration=duration,
                     thumb=video_thumbnail,
-                    caption=f"""<blockquote><b>{merged_video_path.rsplit('/',1)[-1]}
+                    caption=f"""<b>{merged_video_path.rsplit('/',1)[-1]}
 
 Merged For: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>
 User: {cb.from_user.id} | @{cb.from_user.username}
-Bot: @{Config.BOT_USERNAME}</b></blockquote>""",
-                    parse_mode="HTML",
+Bot: @{Config.BOT_USERNAME}</b>""",
                     progress=prog.progress_for_pyrogram,
                     progress_args=(
                         f"**Uploading:\n{merged_video_path.rsplit('/',1)[-1]}**",
@@ -53,12 +53,11 @@ Bot: @{Config.BOT_USERNAME}</b></blockquote>""",
                     chat_id=int(LOGCHANNEL),
                     document=merged_video_path,
                     thumb=video_thumbnail,
-                    caption=f"""<blockquote><b>{merged_video_path.rsplit('/',1)[-1]}
+                    caption=f"""<b>{merged_video_path.rsplit('/',1)[-1]}
 
 Merged For: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>
 User: {cb.from_user.id} | @{cb.from_user.username}
-Bot: @{Config.BOT_USERNAME}</b></blockquote>""",
-                    parse_mode="HTML",
+Bot: @{Config.BOT_USERNAME}</b>""",
                     progress=prog.progress_for_pyrogram,
                     progress_args=(
                         f"**Uploading: {merged_video_path.rsplit('/',1)[-1]}**",
@@ -70,13 +69,13 @@ Bot: @{Config.BOT_USERNAME}</b></blockquote>""",
                     chat_id=cb.message.chat.id,
                     from_chat_id=sent_.chat.id,
                     message_id=sent_.id,
-                    caption=f"""<blockquote><b>{merged_video_path.rsplit('/',1)[-1]}
+                    caption=f"""<b>{merged_video_path.rsplit('/',1)[-1]}
 
 Merged For: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>
 User: {cb.from_user.id} | @{cb.from_user.username}
-Bot: @{Config.BOT_USERNAME}</b></blockquote>""",
-                    parse_mode="HTML",
+Bot: @{Config.BOT_USERNAME}</b>""",
                 )
+                # await sent_.delete()
     else:
         try:
             sent_ = None
@@ -90,8 +89,7 @@ Bot: @{Config.BOT_USERNAME}</b></blockquote>""",
                     width=width,
                     duration=duration,
                     thumb=video_thumbnail,
-                    caption=f"""<blockquote><b>{merged_video_path.rsplit('/',1)[-1]}</b></blockquote>""",
-                    parse_mode="HTML",
+                    caption=f"**{merged_video_path.rsplit('/',1)[-1]}**",
                     progress=prog.progress_for_pyrogram,
                     progress_args=(
                         f"**Uploading:\n{merged_video_path.rsplit('/',1)[-1]}**",
@@ -104,8 +102,7 @@ Bot: @{Config.BOT_USERNAME}</b></blockquote>""",
                     chat_id=cb.message.chat.id,
                     document=merged_video_path,
                     thumb=video_thumbnail,
-                    caption=f"""<blockquote><b>{merged_video_path.rsplit('/',1)[-1]}</b></blockquote>""",
-                    parse_mode="HTML",
+                    caption=f"**{merged_video_path.rsplit('/',1)[-1]}**",
                     progress=prog.progress_for_pyrogram,
                     progress_args=(
                         f"**Uploading:\n{merged_video_path.rsplit('/',1)[-1]}**",
@@ -120,13 +117,13 @@ Bot: @{Config.BOT_USERNAME}</b></blockquote>""",
                 media = sent_.video or sent_.document
                 await sent_.copy(
                     chat_id=int(LOGCHANNEL),
-                    caption=f"""<blockquote><b>{media.file_name}
-
-Extracted For: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>
+                    caption=f"""<b>{media.file_name}
+                   
+Merged For: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>
 User: {cb.from_user.id} | @{cb.from_user.username}
-Bot: @{Config.BOT_USERNAME}</b></blockquote>""",
-                    parse_mode="HTML",
+Bot: @{Config.BOT_USERNAME}</b>""",
                 )
+
 
 async def uploadFiles(
     c: Client,
@@ -142,8 +139,7 @@ async def uploadFiles(
         sent_: Message = await c.send_document(
             chat_id=cb.message.chat.id,
             document=up_path,
-            caption=f"""<blockquote><b>{up_path.rsplit('/',1)[-1]}</b></blockquote>""",
-            parse_mode="HTML",
+            caption=f"**{up_path.rsplit('/',1)[-1]}**",
             progress=prog.progress_for_pyrogram,
             progress_args=(
                 f"**Uploading:\n{up_path.rsplit('/',1)[-1]}**",
@@ -160,9 +156,8 @@ async def uploadFiles(
 
 Extracted For: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>
 User: {cb.from_user.id} | @{cb.from_user.username}
-Bot: @{Config.BOT_USERNAME}</b></blockquote>""",
-                    parse_mode="HTML",
+Bot: @{Config.BOT_USERNAME}""",
                 )
-    except Exception as err:
-        LOGGER.info(err)
-        await cb.message.edit("Failed to upload")
+    except:
+        1    
+    1
