@@ -69,7 +69,7 @@ async def callback_handler(c: Client, cb: CallbackQuery):
             return
         UPLOAD_TO_DRIVE.update({f"{cb.from_user.id}": True})
         await cb.message.edit(
-            text="Okay I'll upload to drive\nDo you want to rename? Default file name is **[@yashoswalyo]_merged.mkv**",
+            text="Okay I'll upload to drive\nDo you want to rename? Default file name is (@jr_bots)_merged.mkv**",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
@@ -117,7 +117,7 @@ async def callback_handler(c: Client, cb: CallbackQuery):
     elif cb.data == "video":
         UPLOAD_AS_DOC.update({f"{cb.from_user.id}": False})
         await cb.message.edit(
-            text="Do you want to rename? Default file name is **[@yashoswalyo]_merged.mkv**",
+            text="<b>Do you want to rename? Default file name is (jr_bots)_merged.mkv</b>",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
@@ -177,7 +177,7 @@ async def callback_handler(c: Client, cb: CallbackQuery):
         queueDB.update({cb.from_user.id: {"videos": [], "subtitles": [], "audios": []}})
         formatDB.update({cb.from_user.id: None})
         await cb.message.edit("Sucessfully Cancelled")
-        await asyncio.sleep(5)
+        await asyncio.sleep(3)
         await cb.message.delete(True)
         return
 
@@ -192,7 +192,7 @@ async def callback_handler(c: Client, cb: CallbackQuery):
         else:
             await c.answer_callback_query(
                 callback_query_id=cb.id,
-                text="⚠️ Opps ⚠️ \n I Got a False Visitor 🚸 !! \n\n 📛 Stay At Your Limits !!📛",
+                text="<b>opps\nI Got a False Visitor !\n\nStay At Your Limits ! </b>",
                 show_alert=True,
                 cache_time=0,
             )
@@ -415,10 +415,11 @@ async def callback_handler(c: Client, cb: CallbackQuery):
 
     elif cb.data == "free":
         await cb.message.edit(
-            text=f"""<b><u>🥉 Free tier (free)</u>
+            text=f"""<blockquote><b>🥉 Free tier (free)
+            
 1) 2GB uploading support
 2) High speed (download & upload)
-3) Merge up to 10 videos into 1</b>""",
+3) Merge up to 10 videos into 1</b></blockquote>""",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
@@ -433,13 +434,13 @@ async def callback_handler(c: Client, cb: CallbackQuery):
 
     elif cb.data == "paid":
         await cb.message.edit(
-            text=f"""<b><u>🥇 Premium tier plan (149₹ per month)</u>
+            text=f"""<blockquote><b>🥇 Premium tier plan (149₹ per month)
             
 1) 4GB uploading support
 2) No token verification
 3) No ads
 4) High speed (download & upload)
-5) Merge up to 25 videos into 1</b>""",
+5) Merge up to 25 videos into 1</b></blockquote>""",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
