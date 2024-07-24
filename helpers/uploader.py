@@ -36,11 +36,11 @@ async def uploadVideo(
                     width=width,
                     duration=duration,
                     thumb=video_thumbnail,
-                    caption=f"""<b>{merged_video_path.rsplit('/',1)[-1]}
+                    caption=f"""**{merged_video_path.rsplit('/',1)[-1]}**
 
-Merged For: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>
-User: {cb.from_user.id} | @{cb.from_user.username}
-Bot: @{Config.BOT_USERNAME}</b>""",
+**Merged For: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>**
+**User: {cb.from_user.id} | @{cb.from_user.username}**
+**Bot: @{Config.BOT_USERNAME}**""",
                     progress=prog.progress_for_pyrogram,
                     progress_args=(
                         f"**Uploading:\n{merged_video_path.rsplit('/',1)[-1]}**",
@@ -53,11 +53,11 @@ Bot: @{Config.BOT_USERNAME}</b>""",
                     chat_id=int(LOGCHANNEL),
                     document=merged_video_path,
                     thumb=video_thumbnail,
-                    caption=f"""<b>{merged_video_path.rsplit('/',1)[-1]}
+                    caption=f"""**{merged_video_path.rsplit('/',1)[-1]}**
 
-Merged For: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>
-User: {cb.from_user.id} | @{cb.from_user.username}
-Bot: @{Config.BOT_USERNAME}""",
+**Merged For: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>**
+**User: {cb.from_user.id} | @{cb.from_user.username}**
+**Bot: @{Config.BOT_USERNAME}**""",
                     progress=prog.progress_for_pyrogram,
                     progress_args=(
                         f"**Uploading: {merged_video_path.rsplit('/',1)[-1]}**",
@@ -69,11 +69,11 @@ Bot: @{Config.BOT_USERNAME}""",
                     chat_id=cb.message.chat.id,
                     from_chat_id=sent_.chat.id,
                     message_id=sent_.id,
-                    caption=f"""<b>{merged_video_path.rsplit('/',1)[-1]}
+                    caption=f"""**{merged_video_path.rsplit('/',1)[-1]}**
 
-Merged For: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>
-User: {cb.from_user.id} | @{cb.from_user.username}
-Bot: @{Config.BOT_USERNAME}""",
+**Merged For: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>**
+**User: {cb.from_user.id} | @{cb.from_user.username}**
+**Bot: @{Config.BOT_USERNAME}**""",
                 )
                 # await sent_.delete()
     else:
@@ -117,11 +117,11 @@ Bot: @{Config.BOT_USERNAME}""",
                 media = sent_.video or sent_.document
                 await sent_.copy(
                     chat_id=int(LOGCHANNEL),
-                    caption=f"""<b>{media.file_name}
+                    caption=f"""**{media.file_name}**
                    
-Merged For: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>
-User: {cb.from_user.id} | @{cb.from_user.username}
-Bot: @{Config.BOT_USERNAME}""",
+**Merged For: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>**
+**User: {cb.from_user.id} | @{cb.from_user.username}**
+**Bot: @{Config.BOT_USERNAME}**""",
                 )
 
 
@@ -130,7 +130,8 @@ async def uploadFiles(
     cb: CallbackQuery,
     up_path,
     n,
-    all
+    all,
+    custom_caption:str|None
 ):
     try:
         sent_ = None
@@ -139,7 +140,7 @@ async def uploadFiles(
         sent_: Message = await c.send_document(
             chat_id=cb.message.chat.id,
             document=up_path,
-            caption=f"**{up_path.rsplit('/',1)[-1]}**",
+            caption=f"**{up_path.rsplit('/',1)[-1]}**" + (f"**\n\nTrack title: {custom_caption}**" if custom_caption else ""),
             progress=prog.progress_for_pyrogram,
             progress_args=(
                 f"**Uploading:\n{up_path.rsplit('/',1)[-1]}**",
@@ -152,11 +153,11 @@ async def uploadFiles(
                 media = sent_.video or sent_.document
                 await sent_.copy(
                     chat_id=int(LOGCHANNEL),
-                    caption=f"""<blockquote><b>{media.file_name}
+                    caption=f"""**{media.file_name}**
 
-Extracted For: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>
-User: {cb.from_user.id} | @{cb.from_user.username}
-Bot: @{Config.BOT_USERNAME}""",
+**Extracted For: <a href='tg://user?id={cb.from_user.id}'>{cb.from_user.first_name}</a>**
+**User: {cb.from_user.id} | @{cb.from_user.username}**
+**Bot: @{Config.BOT_USERNAME}**""",
                 )
     except:
         1    
