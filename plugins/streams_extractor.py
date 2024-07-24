@@ -74,6 +74,7 @@ async def streamsExtractor(c: Client, cb:CallbackQuery ,media_mid, exAudios=Fals
                 up_path=up_path,
                 n=cf,
                 all=no_of_files,
+                custom_caption=audios[cf-1].get("tags",{}).get("title",None)
             )
             cf+=1
             LOGGER.info(f"Uploaded: {up_path}")
