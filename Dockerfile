@@ -1,5 +1,4 @@
-#FROM ubuntu:24.04
-FROM python:3.10-slim
+FROM ubuntu:24.04
 
 WORKDIR /usr/src/mergebot
 RUN chmod 777 /usr/src/mergebot
