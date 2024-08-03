@@ -52,7 +52,6 @@ from config import Config
 from helpers import database
 from helpers.utils import UserSettings, get_readable_file_size, get_readable_time
 
-pyrogram.utils.MIN_CHANNEL_ID = -1009999999999
 botStartTime = time.time()
 parent_id = Config.GDRIVE_FOLDER_ID
 
