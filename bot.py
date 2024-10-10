@@ -259,10 +259,10 @@ Hit /help to learn, how to use this bot.</b>""",
         quote=True,
         reply_markup=InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("📢 Purchase Premium membership", callback_data="premium")],
+                [InlineKeyboardButton("📢 Please Donate Some Amount", url=f"https://t.me/{Config.OWNER_NAME}")],
                 [
                     InlineKeyboardButton("⛅ More Bots", url="https://t.me/jr_bots"),
-                    InlineKeyboardButton("🌨️ Developer", url=f"https://t.me/{Config.OWNER_USERNAME}"),
+                    InlineKeyboardButton("🌨️ Developer", url=f"https://t.me/{Config.OWNER_NAME}"),
                 ],
                 [InlineKeyboardButton("📴 Close", callback_data="close")],
             ]
